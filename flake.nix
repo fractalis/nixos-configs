@@ -27,6 +27,7 @@
     # Tined Schemes
     tinted-schemes = {
       url = "github:tinted-theming/schemes";
+      flake = false;
     };
 
     # Deploy-rs
@@ -49,7 +50,15 @@
     # Disko
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follow = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Fenix
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     # Flake Utils
@@ -69,9 +78,42 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Hyperland
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprcursor = {
+      url = "github:hyprwm/Hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pyprland = {
+      url = "github:hyprland-community/pyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Microvm
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+      };
     };
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -100,19 +142,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-
     nur-packages = {
       url = "github:nix-community/NUR";
       inputs = {
-        nikpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs = {
-        flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -137,9 +176,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
-  {
-
-    flake-parts.lib.mkFlake { inherit inputs; }
+    flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, moduleWithSystem, ...}:
     {
       imports = [
         # To Import a flake module
@@ -159,7 +196,6 @@
       flake = {
         # Put your original flake attributes here.
       };
-    };
-  };
+    });
 }
 
