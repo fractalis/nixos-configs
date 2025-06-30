@@ -1,15 +1,165 @@
 {
-  description = "A very basic flake";
+  description = "Another super awesome, modular, totally interactive-odular NixOS Config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # While more risky, going to opt for unstable for bleeding edge and
+    # the latest and greatest.
+    nixpkgs.follows = "nixos-unstable";
+
+    # Support other nixpkgs branches.
+    nixos-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    # ---
+
+    # Agenix
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # Tined Schemes
+    tinted-schemes = {
+      url = "github:tinted-theming/schemes";
+    };
+
+    # Deploy-rs
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
+
+    # Devshell
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    # Disko
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follow = "nixpkgs";
+    };
+
+    # Flake Utils
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+
+    # Flake Parts
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+
+    # Generate NixOS systems to various formats
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Managing Secrets
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Impermanence
+    impermanence.url = "github:nix-community/impermanence";
+
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    nur-packages = {
+      url = "github:nix-community/NUR";
+      inputs = {
+        nikpkgs.follows = "nixpkgs";
+      };
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    systems.url = "github:nix-systems/default";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
+
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
+  {
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    flake-parts.lib.mkFlake { inherit inputs; }
+    {
+      imports = [
+        # To Import a flake module
+        # 1. Add <module> to inputs
+        # 2. Add <module> as parameter to outputs function
+        # 3. Add here: foo.flakeModule
+      ];
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+      systems = [ "x86_64-linux" ];
 
+      perSystem = { config, self', inputs', pkgs, system, ...}:
+      {
+        # Per-system attributes can be defined here. The self' and inputs'
+        # module parameters provide easy access to attributes of the same
+        # system.
+      };
+      flake = {
+        # Put your original flake attributes here.
+      };
+    };
   };
 }
+
