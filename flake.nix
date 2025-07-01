@@ -178,14 +178,13 @@
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, moduleWithSystem, ...}:
     {
+      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" ];
       imports = [
         # To Import a flake module
         # 1. Add <module> to inputs
         # 2. Add <module> as parameter to outputs function
         # 3. Add here: foo.flakeModule
       ];
-
-      systems = [ "x86_64-linux" ];
 
       perSystem = { config, self', inputs', pkgs, system, ...}:
       {
