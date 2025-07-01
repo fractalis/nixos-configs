@@ -14,108 +14,74 @@
 
     # ---
 
+    # Local
+    infinitas-core.url = "path:./core";
+    # ---
+
     # Agenix
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.home-manager.follows = "home-manager";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.systems.follows = "systems";
 
     # Tined Schemes
-    tinted-schemes = {
-      url = "github:tinted-theming/schemes";
-      flake = false;
-    };
+    tinted-schemes.url = "github:tinted-theming/schemes";
+    tinted-schemes.flake = false;
 
     # Deploy-rs
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    deploy-rs.inputs.utils.follows = "flake-utils";
+
 
     # Devshell
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
 
     # Disko
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # Fenix
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Flake Utils
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.systems.follows = "systems";
 
     # Flake Parts
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Home Manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyperland
-    hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland-contrib.url = "github:hyprwm/contrib";
+    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprcursor = {
-      url = "github:hyprwm/Hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprcursor.url = "github:hyprwm/Hyprcursor";
+    hyprcursor.inputs.nixpkgs.follows = "nixpkgs";
 
-    pyprland = {
-      url = "github:hyprland-community/pyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    pyprland.url = "github:hyprland-community/pyprland";
+    pyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     # Microvm
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
 
-    microvm = {
-      url = "github:astro/microvm.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # Nixvim
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-anywhere
+    nixos-anywhere.url = "github:nix-community/nixos-anywhere";
+    nixos-anywhere.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-anywhere.inputs.disko.follows = "disko";
 
-    nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        disko.follows = "disko";
-      };
-    };
-
+    # nixos-hardware
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     # Generate NixOS systems to various formats
@@ -129,50 +95,27 @@
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
-    nix-fast-build = {
-      url = "github:Mic92/nix-fast-build";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    nix-fast-build.url = "github:Mic92/nix-fast-build";
+    nix-fast-build.inputs.flake-parts.follows = "flake-parts";
+    nix-fast-build.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    nur-packages = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    nur-packages.url = "github:nix-community/NUR";
+    nur-packages.inputs.nixpkgs.follows = "nixpkgs";
 
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.inputs.nixpkgs.follow = "nixpkgs";
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.home-manager.follows = "home-manager";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     systems.url = "github:nix-systems/default";
 
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-
-
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
