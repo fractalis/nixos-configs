@@ -33,7 +33,6 @@
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.inputs.utils.follows = "flake-utils";
 
-
     # Devshell
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs";
@@ -106,7 +105,7 @@
     nur-packages.inputs.nixpkgs.follows = "nixpkgs";
 
     git-hooks.url = "github:cachix/git-hooks.nix";
-    git-hooks.inputs.nixpkgs.follow = "nixpkgs";
+    git-hooks.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.home-manager.follows = "home-manager";
@@ -118,26 +117,47 @@
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, moduleWithSystem, ...}:
-    {
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" ];
-      imports = [
-        # To Import a flake module
-        # 1. Add <module> to inputs
-        # 2. Add <module> as parameter to outputs function
-        # 3. Add here: foo.flakeModule
-      ];
-
-      perSystem = { config, self', inputs', pkgs, system, ...}:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      flake-parts,
+      ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      top@{
+        config,
+        withSystem,
+        moduleWithSystem,
+        ...
+      }:
       {
-        # Per-system attributes can be defined here. The self' and inputs'
-        # module parameters provide easy access to attributes of the same
-        # system.
-      };
-      flake = {
-        # Put your original flake attributes here.
-      };
-    });
-}
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+          "x86_64-darwin"
+        ];
+        imports = [
+        ];
 
+        perSystem =
+          {
+            config,
+            self',
+            inputs',
+            pkgs,
+            system,
+            ...
+          }:
+          {
+            # Per-system attributes can be defined here. The self' and inputs'
+            # module parameters provide easy access to attributes of the same
+            # system.
+          };
+        flake = {
+          # Put your original flake attributes here.
+        };
+      }
+    );
+}
