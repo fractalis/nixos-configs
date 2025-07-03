@@ -119,12 +119,7 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }:
+    inputs:
     let
       lib = inputs.snowfall-lib.mkLib {
         inherit inputs;

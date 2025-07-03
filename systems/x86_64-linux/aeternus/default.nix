@@ -10,7 +10,7 @@
   imports = [
     ./hardware-configuration.nix
     ./disks.nix
-    inputs.nixos-facter-modules.nixosModules.nixos-facter-modules
+    inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
   ];
 
@@ -33,7 +33,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFileSystems = lib.mkForce [ "btrfs" ];
+    supportedFilesystems = lib.mkForce [ "btrfs" ];
 
     loader = {
       systemd-boot.enable = true;
