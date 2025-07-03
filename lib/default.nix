@@ -1,0 +1,7 @@
+{
+  inputs,
+  snowfall-inputs,
+  lib,
+}:
+{
+}

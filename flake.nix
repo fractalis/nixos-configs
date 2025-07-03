@@ -123,42 +123,36 @@
       self,
       nixpkgs,
       home-manager,
-      flake-parts,
       ...
     }:
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      top@{
-        config,
-        withSystem,
-        moduleWithSystem,
-        ...
-      }:
-      {
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
-          "x86_64-darwin"
-        ];
-        imports = [
-        ];
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-        perSystem =
-          {
-            config,
-            self',
-            inputs',
-            pkgs,
-            system,
-            ...
-          }:
-          {
-            # Per-system attributes can be defined here. The self' and inputs'
-            # module parameters provide easy access to attributes of the same
-            # system.
+        snowfall = {
+          metadata = "infinitas";
+          namespace = "infinitas";
+          meta = {
+            name = "infinitas";
+            title = "Cosmatrexis' NixOS Config";
           };
-        flake = {
-          # Put your original flake attributes here.
         };
-      }
-    );
+      };
+    in
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+      };
+
+      systems.modules.nixos = with inputs; [
+      ];
+
+      overlays = with inputs; [
+      ];
+
+      homes.modules = with inputs; [
+      ];
+
+    };
 }
