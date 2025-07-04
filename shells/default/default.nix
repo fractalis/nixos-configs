@@ -19,7 +19,7 @@ pkgs.mkShell {
     alejandra
     home-manager
     git
-    sops-nix
+    sops
     ssh-to-age
     gnupg
     age
