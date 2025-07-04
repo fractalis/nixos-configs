@@ -4,6 +4,7 @@
   ...
 }:
 with lib;
+with lib.infinitas;
 let
   cfg = config.hardware.networking;
 in

@@ -12,12 +12,11 @@ rec {
   ##
   #@ Type -> String -> Any -> String
   mkOpt =
-    type: optionName: defaultValue: description:
+    type: default: description:
     mkOption {
       inherit
         type
-        optionName
-        defaultValue
+        default
         description
         ;
     };
@@ -29,9 +28,15 @@ rec {
   ## ```
   ##
   #@ Type -> String -> Any
-  mkOpt' =
-    type: optionName: defaultValue:
-    mkOpt type optionName defaultValue null;
+  mkOpt' = type: default: mkOpt type default null;
+
+  mkBoolOpt = mkOpt types.bool;
+
+  mkBoolOpt' = mkOpt' types.bool;
+
+  mkPackageOpt = mkOpt types.package;
+
+  mkPackageOpt' = mkOpt' types.package;
 
   ## Quickly enable an option.
   ## ```nix
