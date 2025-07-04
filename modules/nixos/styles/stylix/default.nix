@@ -41,13 +41,51 @@ in
     stylix = {
       enable = true;
       autoEnable = true;
-      base16Scheme =
-        "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/tarot.yaml";
       homeManagerIntegration.autoImport = false;
       homeManagerIntegration.followSystem = false;
 
-      # image = pkgs.infinitas.wallpapers.<wallpaperName>;
+      image = pkgs.infinitas.wallpapers.mushroom-purple;
+      imageScalingMode = "center";
 
+      polarity = "dark";
+
+      cursor = {
+        name = "Sweet-Dark";
+        package = pkgs.sweet;
+        size = "24";
+      };
+
+      fonts = {
+        sizes = {
+          terminal = 14;
+          applications = 12;
+          popups = 12;
+          desktop = 10;
+        };
+
+        monospace = {
+          package = pkgs.nerdfonts;
+          name = "JetBrainsMono Nerd Font Mono";
+        };
+
+        sansSerif = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Sans";
+        };
+
+        serif = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Serif";
+        };
+      };
+
+      opacity = {
+        applications = 0.85;
+        terminal = 0.65;
+        desktop = 1.0;
+        popups = 1.0;
+      };
     };
   };
 }
