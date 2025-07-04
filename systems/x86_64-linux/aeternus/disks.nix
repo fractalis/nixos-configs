@@ -32,9 +32,9 @@
                   "--perf-no_read_workqueue"
                   "--perf-no_write_workqueue"
                 ];
+                askPassword = true;
                 settings = {
                   allowDiscards = true;
-                  askPassword = true;
                 };
                 content = {
                   type = "btrfs";

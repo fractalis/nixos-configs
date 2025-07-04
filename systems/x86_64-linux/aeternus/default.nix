@@ -19,19 +19,21 @@
     defaultEditor = true;
   };
 
-  program.kdeconnect.enable = true;
-  system.boot.plymouth = lib.mkForce true; # Enable Plymouth for boot splash.
+  programs.kdeconnect.enable = true;
 
-  services = {
-    virtualization.podman.enable = true; # Enable Podman for container management.
-    virtualization.kvm.enable = true; # Enable KVM Virtualization support.
-  };
+  ## services = {
+  ##  virtualization.podman.enable = true; # Enable Podman for container management.
+  ##  virtualization.kvm.enable = true; # Enable KVM Virtualization support.
+  ## };
 
   roles = {
-    # Add Roles Here
+    common.enable = true; # Enable common configurations.
   };
 
   boot = {
+    plymouth = {
+      enable = true;
+    };
     kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = lib.mkForce [ "btrfs" ];
 
@@ -41,7 +43,7 @@
     };
   };
 
-  # Hardware};
+  # Hardware
   hardware = {
     enableAllFirmware = true;
 
@@ -63,31 +65,33 @@
     };
   };
 
-  fileSystems = {
-    "/".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-    "/home".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-    "/nix".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-    "/persist".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-    "/var/log" = {
-      options = [
+  /*
+    fileSystems = {
+      "/".options = [
         "compress=zstd"
         "noatime"
       ];
-      neededForBoot = true;
+      "/home".options = [
+        "compress=zstd"
+        "noatime"
+      ];
+      "/nix".options = [
+        "compress=zstd"
+        "noatime"
+      ];
+      "/persist".options = [
+        "compress=zstd"
+        "noatime"
+      ];
+      "/var/log" = {
+        options = [
+          "compress=zstd"
+          "noatime"
+        ];
+        neededForBoot = true;
+      };
     };
-  };
+  */
 
   nixpkgs.config.allowUnfree = true;
 

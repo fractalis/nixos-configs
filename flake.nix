@@ -62,6 +62,8 @@
     pyprland.url = "github:hyprland-community/pyprland";
     pyprland.inputs.nixpkgs.follows = "nixpkgs";
 
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
     # Agenix
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.home-manager.follows = "home-manager";
@@ -141,13 +143,24 @@
       };
 
       systems.modules.nixos = with inputs; [
+        stylix.nixosModules.stylix
+        home-manager.nixosModules.home-manager
+        disko.nixosModules.disko
+        sops-nix.nixosModules.sops
       ];
 
       overlays = with inputs; [
+        nixgl.overlay
+        nur.overlays.default
       ];
 
       homes.modules = with inputs; [
       ];
 
+      deploy = lib.mkDeploy { inherit (inputs) self; };
+
+      checks = builtins.mapAttrs (
+        system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy-lib
+      ) inputs.deploy-rs.lib;
     };
 }
