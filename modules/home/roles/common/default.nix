@@ -18,5 +18,11 @@ in
     system = {
       nix.enable = true;
     };
+
+    cli = {
+      terminals.foot.enable = true;
+      terminals.ghostty.enable = true;
+      shells.zsh.enable = true;
+    };
   };
 }

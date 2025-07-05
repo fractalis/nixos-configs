@@ -103,6 +103,8 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixcats.url = "github:BirdeeHub/nixCats-nvim";
+
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-fast-build.inputs.flake-parts.follows = "flake-parts";
     nix-fast-build.inputs.nixpkgs.follows = "nixpkgs";
