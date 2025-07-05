@@ -14,5 +14,9 @@ in
 
   config = lib.mkIf cfg.enable {
     browsers.firefox.enable = true;
+
+    system = {
+      nix.enable = true;
+    };
   };
 }
