@@ -4,9 +4,11 @@
   ...
 }:
 with lib;
-with lib.infinitas; let
+with lib.infinitas;
+let
   cfg = config.system.nix;
-in {
+in
+{
 
   options.system.nix = with types; {
     enable = mkBoolOpt false "Whether to manage nix configuration.";
@@ -15,10 +17,16 @@ in {
   config = mkIf cfg.enable {
     nix = {
       settings = {
-        trusted-users = ["@wheel", "root"];
+        trusted-users = [
+          "@wheel"
+          "root"
+        ];
         auto-optimise-store = lib.mkDefault true;
         use-xdg-base-directories = true;
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         warn-dirty = true;
       };
     };
