@@ -40,7 +40,7 @@ in
           web-clipper-obsidian
           enhancer-for-youtube
           enhanced-github
-          better-dark-docs
+          better-darker-docs
           darkreader
         ];
 

@@ -48,7 +48,7 @@ in
         };
       };
 
-      images = pkgs.infinitas.wallpapers.mushroom-purple;
+      image = pkgs.infinitas.wallpapers.mushroom-purple;
 
       cursor = {
         name = "Sweet";
