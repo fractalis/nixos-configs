@@ -1035,6 +1035,21 @@
         "type": "github"
       }
     },
+    "nixCats": {
+      "locked": {
+        "lastModified": 1750385661,
+        "narHash": "sha256-JpIEf5IrOzMTjowkxB6kgh4AK3Dp9i/T9G4w2ZiKMgQ=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "04379fef2fbd4c9d8f4c9a6203cef135ab0b1acd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -1427,6 +1442,7 @@
         "microvm": "microvm",
         "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
+        "nixCats": "nixCats",
         "nixgl": "nixgl",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-facter-modules": "nixos-facter-modules",
