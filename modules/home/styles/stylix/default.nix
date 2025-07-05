@@ -11,7 +11,6 @@ in
 {
   imports = with inputs; [
     stylix.homeModules.stylix
-    catppuccin.homeModules.catppuccin
   ];
 
   options.styles.stylix = {
@@ -27,9 +26,6 @@ in
       open-sans
       dejavu-fonts
     ];
-
-    catppuccin.flavor = "mocha";
-    catppuccin.zsh.enable = true;
 
     stylix = {
       enable = true;
