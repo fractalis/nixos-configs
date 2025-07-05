@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.infintias;
+with lib.infinitas;
 let
   cfg = configs.cli.shells.zsh;
 in
@@ -30,7 +30,7 @@ in
       };
 
       history.size = 10000;
-      
+
       ohMyZsh = {
         enable = true;
         theme = "muse";
@@ -55,7 +55,7 @@ in
           gradle
 
         ];
-      }
+      };
     };
   };
 }
