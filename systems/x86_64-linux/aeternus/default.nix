@@ -31,16 +31,7 @@
   };
 
   boot = {
-    plymouth = {
-      enable = true;
-    };
-    kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = lib.mkForce [ "btrfs" ];
-
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
   };
 
   # Hardware

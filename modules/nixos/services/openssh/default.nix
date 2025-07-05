@@ -6,7 +6,7 @@
 with lib;
 with lib.infinitas;
 let
-  cfg = config.services.openssh;
+  cfg = config.services.ssh;
 in
 {
   options.services.ssh = with types; {

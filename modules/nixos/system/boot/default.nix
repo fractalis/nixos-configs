@@ -29,6 +29,8 @@ in
       ++ lib.optionals cfg.secureBoot [ sbctl ];
 
     boot = {
+      kernelPackages = pkgs.linuxPackages_latest;
+
       kernelParams = lib.optionals cfg.plymouth [
         "quiet"
         "splash"
