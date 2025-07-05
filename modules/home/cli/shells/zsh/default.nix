@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = true;
-      enableCompletions = true;
+      enableCompletion = true;
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
 
@@ -31,29 +31,28 @@ in
 
       history.size = 10000;
 
-      ohMyZsh = {
+      oh-my-zsh = {
         enable = true;
         theme = "muse";
         plugins = [
-          asdf
-          autoenv
-          branch
-          colorize
-          colored-man-pages
-          common-aliases
-          copyfile
-          copypath
-          direnv
-          dirhistory
-          docker
-          docker-compose
-          dotenv
-          emoji
-          extract
-          git
-          github
-          gradle
-
+          "asdf"
+          "autoenv"
+          "branch"
+          "colorize"
+          "colored-man-pages"
+          "common-aliases"
+          "copyfile"
+          "copypath"
+          "direnv"
+          "dirhistory"
+          "docker"
+          "docker-compose"
+          "dotenv"
+          "emoji"
+          "extract"
+          "git"
+          "github"
+          "gradle"
         ];
       };
     };

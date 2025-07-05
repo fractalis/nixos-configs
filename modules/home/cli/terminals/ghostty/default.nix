@@ -6,7 +6,7 @@
 with lib;
 with lib.infinitas;
 let
-  cfg = configs.cli.terminals.ghostty;
+  cfg = config.cli.terminals.ghostty;
 in
 {
   options.cli.terminals.ghostty = with types; {

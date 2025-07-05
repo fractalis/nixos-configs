@@ -6,7 +6,7 @@
 with lib;
 with lib.infinitas;
 let
-  cfg = configs.cli.terminals.foot;
+  cfg = config.cli.terminals.foot;
 in
 {
   options.cli.terminals.foot = with types; {

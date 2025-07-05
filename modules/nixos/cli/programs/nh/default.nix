@@ -6,7 +6,7 @@
 with lib;
 with lib.infinitas;
 let
-  cfg = config.nixos.cli.programs.nh;
+  cfg = config.cli.programs.nh;
 in
 {
   options.cli.programs.nh = {

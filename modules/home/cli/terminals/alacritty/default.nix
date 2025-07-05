@@ -6,7 +6,7 @@
 with lib;
 with lib.infinitas;
 let
-  cfg = configs.cli.terminals.alacritty;
+  cfg = config.cli.terminals.alacritty;
 in
 {
   options.cli.terminals.alacritty = with types; {

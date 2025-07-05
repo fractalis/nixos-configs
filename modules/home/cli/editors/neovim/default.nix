@@ -9,7 +9,7 @@ with lib;
 with lib.infinitas;
 let
   inherit (inputs.nixCats) utils;
-  cfg = configs.cli.editors.neovim;
+  cfg = config.cli.editors.neovim;
 in
 {
   imports = [
