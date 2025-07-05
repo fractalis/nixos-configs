@@ -23,7 +23,7 @@ in
         PasswordAuthentication = false;
         StreamLocalBindUnlink = "yes";
         GatewayPorts = "clientspecified";
-        PermitRootLogin = false;
+        PermitRootLogin = "no";
       };
     };
   };

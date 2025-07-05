@@ -53,7 +53,7 @@ in
       cursor = {
         name = "Sweet-Dark";
         package = pkgs.sweet;
-        size = "24";
+        size = 24;
       };
 
       fonts = {
@@ -65,7 +65,7 @@ in
         };
 
         monospace = {
-          package = pkgs.nerdfonts;
+          package = pkgs.nerd-fonts.jetbrains-mono;
           name = "JetBrainsMono Nerd Font Mono";
         };
 
