@@ -1,0 +1,24 @@
+local M = {}
+
+M.for_cat = {
+    spec_field = "for_cat",
+    set_lazy = false,
+    modify = function(plugin)
+        if type(plugin.for_cat) == "table" then
+            if plugin_for_cat.cat ~= nil then
+                if vim.g[ [[nixCats-special-rtp-entry-nixCats]] ] ~= nil then
+                    plugin.enabled = (nixCats(plugin.for_cat.cat) and true) or false
+                else
+                    plugin.enabled = nixCats(plugin.for_cat.default)
+                end
+            else
+                plugin.enabled = (nixCats(plugin.for_cat) and true) or false
+            end
+        elseif type(plugin.for_cat) == "string" then
+            plugin.enabled = (nixCats(plugin.for_cat) and true) or false
+        end
+        return plugin
+    end,
+}
+
+return M
