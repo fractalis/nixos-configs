@@ -8,7 +8,7 @@
 with lib;
 with lib.infinitas;
 let
-  cfg = configs.cli.shells.zsh;
+  cfg = config.cli.shells.zsh;
 in
 {
   options.cli.shells.zsh = with lib.types; {
